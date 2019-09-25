@@ -11,31 +11,31 @@ This template is subject to the conditions of the <a href="https://s3.amazonaws.
 <!-- Use Case (start) -->
 As a Salesforce administrator I want to have my Accounts synchronized between SAP S/4HANA and Salesforce organization.
 
-            This Template should serve as a foundation for setting an online bi-directional sync between SAP S/4HANA Business Partner and Salesforce Account Objects.
+This Template should serve as a foundation for setting an online bi-directional sync between SAP S/4HANA Business Partner and Salesforce Account Objects.
 
-            The integration main behaviour is polling for changes (new Accounts or modified ones) that have occurred either in SAP S/4HANA or Salesforce during a certain defined period of
-            time. For those Accounts that both have not been updated yet the integration triggers an upsert (update or create depending on the case) taking the last modification as the one that should be applied.
+The integration main behaviour is polling for changes (new Accounts or modified ones) that have occurred either in SAP S/4HANA or Salesforce during a certain defined period of
+time. For those Accounts that both have not been updated yet the integration triggers an upsert (update or create depending on the case) taking the last modification as the one that should be applied.
 
-            Requirements have been set not only to be used as examples, but also to establish a starting point to adapt your integration to your requirements.
+Requirements have been set not only to be used as examples, but also to establish a starting point to adapt your integration to your requirements.
 
-            ### Template overview
-            Let's say we want to keep Salesforce instance synchronized with SAP S/4HANA. Then, the integration behavior can be summarized just with the following steps:
+### Template overview
+Let's say we want to keep Salesforce instance synchronized with SAP S/4HANA. Then, the integration behavior can be summarized just with the following steps:
 
-            1. Ask Salesforce:
-            *Which changes have there been since the last time I got in touch with you?*
+1. Ask Salesforce:
+*Which changes have there been since the last time I got in touch with you?*
 
-            2. For each of the updates fetched in the previous step (1.), ask SAP S/4HANA:
-            *Does the update received from Salesforce should be applied?*
+2. For each of the updates fetched in the previous step (1.), ask SAP S/4HANA:
+*Does the update received from Salesforce should be applied?*
 
-            3. If SAP S/4HANA answer for the previous question (2.) is *Yes*, then *upsert* (create or update depending each particular case) SAP S/4HANA with the belonging change
+3. If SAP S/4HANA answer for the previous question (2.) is *Yes*, then *upsert* (create or update depending each particular case) SAP S/4HANA with the belonging change
 
-            4. Repeat previous steps (1. to 3.) the other way around (using SAP S/4HANA as source instance and Salesforce as the target one)
+4. Repeat previous steps (1. to 3.) the other way around (using SAP S/4HANA as source instance and Salesforce as the target one)
 
-            Repeat *ad infinitum*:
+Repeat *ad infinitum*:
 
-            5. Ask Salesforce:
-            *Which changes have there been since the question I've made in the step 1.?*
-            And so on...
+5. Ask Salesforce:
+*Which changes have there been since the question I've made in the step 1.?*
+And so on...
 <!-- Use Case (end) -->
 
 # Considerations
@@ -45,9 +45,9 @@ As a Salesforce administrator I want to have my Accounts synchronized between SA
 
 <!-- Considerations (start) -->
 To make this template run, there are certain preconditions that must be considered. All of them deal with the preparations in both source (SAP S/4HANA) and destination (SFDC)
-            systems, that must be made for the template to run smoothly. Failing to do so can lead to unexpected behavior of the template.
+systems, that must be made for the template to run smoothly. Failing to do so can lead to unexpected behavior of the template.
 
-            Before you continue with the use of this template, you may want to check out this [Documentation Page](https://docs.mulesoft.com/connectors/sap/sap-s4hana-cloud-connector), that teaches you how to work with SAP S/4HANA and Anypoint Studio.
+Before you continue with the use of this template, you may want to check out this [Documentation Page](https://docs.mulesoft.com/connectors/sap/sap-s4hana-cloud-connector), that teaches you how to work with SAP S/4HANA and Anypoint Studio.
 <!-- Considerations (end) -->
 
 ## Salesforce Considerations
@@ -133,20 +133,20 @@ After you import your template into Anypoint Studio, follow these steps to run i
 <!-- Running on Studio (start) -->
 After you import your template into Anypoint Studio, follow these steps to run it:
 
-            + Locate the properties file `mule.dev.properties`, in
-            src/main/resources.
-            + Complete all the properties required as per the examples in the "Properties to Configure" section.
-            + Right click the template project folder.
-            + Hover
-            your mouse over `Run as`.
-            + Click `Mule Application (configure)`.
-            + Inside the dialog, select Environment and set the variable `mule.env` to the value `dev`.
-            + Click
-            `Run`.
++ Locate the properties file `mule.dev.properties`, in
+src/main/resources.
++ Complete all the properties required as per the examples in the "Properties to Configure" section.
++ Right click the template project folder.
++ Hover
+your mouse over `Run as`.
++ Click `Mule Application (configure)`.
++ Inside the dialog, select Environment and set the variable `mule.env` to the value `dev`.
++ Click
+`Run`.
 
-            To make this template run on Studio there are a few extra steps that needs to be made.
-            Check this Documentation Page: [Enabling Your Studio Project for SAP
-            S/4HANA](https://docs.mulesoft.com/connectors/sap/sap-s4hana-cloud-connector#configuring-the-connector-in-studio-7).
+To make this template run on Studio there are a few extra steps that needs to be made.
+Check this Documentation Page: [Enabling Your Studio Project for SAP
+S/4HANA](https://docs.mulesoft.com/connectors/sap/sap-s4hana-cloud-connector#configuring-the-connector-in-studio-7).
 <!-- Running on Studio (end) -->
 
 ### Running on Mule Standalone
@@ -170,29 +170,29 @@ To use this template, configure properties such as credentials, configurations, 
 ### Application Configuration
 <!-- Application Configuration (start) -->
 **Application Configuration**
-            + scheduler.frequency `10000`
-            + scheduler.startDelay `0`
++ scheduler.frequency `10000`
++ scheduler.startDelay `0`
 
-            **Watermarking default last query timestamp e.g.
-            "2016-12-13T03:00:59Z"**
-            + watermark.default.expression `2018-02-25T11:00:00.000Z`
+**Watermarking default last query timestamp e.g.
+"2016-12-13T03:00:59Z"**
++ watermark.default.expression `2018-02-25T11:00:00.000Z`
 
-            **Batch size**
-            + page.size `1000`
+**Batch size**
++ page.size `1000`
 
-            **SalesForce Connector Configuration**
+**SalesForce Connector Configuration**
 
-            + sfdc.username `bob.dylan@sfdc`
-            + sfdc.password `DylanPassword123`
-            + sfdc.securityToken `avsfwCUl7apQs56Xq2AKi3X`
-            + sfdc.integration.user.id `1234678`
++ sfdc.username `bob.dylan@sfdc`
++ sfdc.password `DylanPassword123`
++ sfdc.securityToken `avsfwCUl7apQs56Xq2AKi3X`
++ sfdc.integration.user.id `1234678`
 
-            **SAP S/4HANA Connector
-            Configuration**
+**SAP S/4HANA Connector
+Configuration**
 
-            + s4hana.baseUrl `your.s4hana.address.com`
-            + s4hana.username `your.s4hana.username`
-            + s4hana.password `your.s4hana.password`
++ s4hana.baseUrl `your.s4hana.address.com`
++ s4hana.username `your.s4hana.username`
++ s4hana.password `your.s4hana.password`
 
             ​
 <!-- Application Configuration (end) -->
@@ -200,16 +200,16 @@ To use this template, configure properties such as credentials, configurations, 
 # API Calls
 <!-- API Calls (start) -->
 SalesForce imposes limits on the number of API Calls that can be made.
-            Therefore calculating this amount may be an important factor to consider. Template calls to the API can be calculated using the formula:
+Therefore calculating this amount may be an important factor to consider. Template calls to the API can be calculated using the formula:
 
-            **X / ${page.size}**
+**X / ${page.size}**
 
-            Being X the number of Accounts to be synchronized on each run.
+Being X the number of Accounts to be synchronized on each run.
 
-            The division by ${page.size} is
-            because, by default, Accounts are gathered in groups of ${page.size} for each Upsert API Call in the aggregation step. Also consider that this calls are executed repeatedly every polling cycle.
+The division by ${page.size} is
+because, by default, Accounts are gathered in groups of ${page.size} for each Upsert API Call in the aggregation step. Also consider that this calls are executed repeatedly every polling cycle.
 
-            For instance if 10 records are fetched from origin instance, then 1 api calls to SFDC will be made (1).
+For instance if 10 records are fetched from origin instance, then 1 api calls to SFDC will be made (1).
 <!-- API Calls (end) -->
 
 # Customize It!
