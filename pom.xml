@@ -10,7 +10,7 @@
 
     <artifactId>template-sfdc2s4hana-account-bidirectional</artifactId>
     <packaging>mule-application</packaging>
-    <version>2.1.1-SNAPSHOT</version>
+    <version>2.1.1</version>
     <name>template-sfdc2s4hana-account-bidirectional</name>
 
     <build>
@@ -100,4 +100,4 @@
         </repository>
     </repositories>
 
-<scm><connection>scm:git:git@github.com:mulesoft/template-sfdc2s4hana-account-bidirectional.git</connection><developerConnection>scm:git:git@github.com:mulesoft/template-sfdc2s4hana-account-bidirectional.git</developerConnection><url>https://github.com/mulesoft/template-sfdc2s4hana-account-bidirectional</url><tag>HEAD</tag></scm></project>
+<scm><connection>scm:git:git@github.com:mulesoft/template-sfdc2s4hana-account-bidirectional.git</connection><developerConnection>scm:git:git@github.com:mulesoft/template-sfdc2s4hana-account-bidirectional.git</developerConnection><url>https://github.com/mulesoft/template-sfdc2s4hana-account-bidirectional</url><tag>v2.1.1</tag></scm></project>
